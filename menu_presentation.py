@@ -5,7 +5,7 @@ import json
 
 os.system('cls')
 sleep(1) 
-map_mattrix = [
+imag1 = [
     [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
     [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
     [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
@@ -29,10 +29,10 @@ map_mattrix = [
     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], 
 ]
 
-for y in range(len(map_mattrix)):
+for y in range(len(imag1)):
     row = ""
-    for x in range(len(map_mattrix[y])):
-        element = map_mattrix[y][x]
+    for x in range(len(imag1[y])):
+        element = imag1[y][x]
         if element == 7:
             row+="📜"
         elif element == 5:
@@ -85,9 +85,13 @@ if __name__=='__main__':
             print('entrez un nombre de 1 à 4')
         #Check what choice was entered and act accordingly
         if option == 1:
-          exec(open("defis/main.py",encoding="utf-8").read())
+          exec(open("main.py",encoding="utf-8").read())
         elif option == 2:
-            option2()
+            with open('joueur.json', 'r', encoding='utf-8') as f:
+                joueur = json.load(f)
+                player.clear()
+                player.update(joueur)
+                exec(open("main.py",encoding="utf-8").read())
         elif option == 3:
             exec(open("divers/regle.py",encoding="utf-8").read())
         elif option == 4:

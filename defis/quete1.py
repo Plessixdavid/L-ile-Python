@@ -122,8 +122,8 @@ def quete1():
     print()
      
 
-with open('joueur.json', 'w') as f:
-	json.dump(player, f)
+    with open('joueur.json', 'w') as f:
+        json.dump(player, f)
 
 if __name__ == "__main__":
     quete1()
