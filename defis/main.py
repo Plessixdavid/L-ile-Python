@@ -4,26 +4,31 @@ from defis.quete1 import quete1
 from defis.quete2 import quete2
 from defis.quete3 import quete3
 from defis.porte import door
+from divers.carte import carte
+from options.joueur import player
 
-from carte import carte
-from joueur import *
 from inv import *
-
 from prez import *
 from time import *
 import os
+import json
 
-mappy1()
+with open('joueur.json', 'r', encoding='utf-8') as f:
+    joueur = json.load(f)
+
+player.clear()
+player.update(joueur)
+
 
 def colquette():
-    print(joueur["x"], joueur["y"])
-    if joueur["y"] == 5 and joueur["x"] == 25:
+    print(player["x"], player["y"])
+    if player["y"] == 5 and player["x"] == 25:
         quete1()
-    if joueur["y"] == 2 and joueur["x"] == 12:
+    if player["y"] == 2 and player["x"] == 12:
         door()
-    elif joueur["y"] == 16 and joueur["x"] == 17:
+    elif player["y"] == 16 and player["x"] == 17:
         quete2()
-    elif joueur["y"] == 14 and joueur["x"] == 5:
+    elif player["y"] == 14 and player["x"] == 5:
         quete3()
 
 entrejeu = ("Ce matin, tu n'as pas été réveillé par les mouvements du navire.",
@@ -43,8 +48,10 @@ printTexts(entrejeu)
 name = input("tu ne te souviens pas de ton nom bizarrement, alors choisis en un.\n"
         "comment te nomme tu?\n")
 
-joueur.update({"names": name})
-print(joueur)
+player.update({"names": name})
+print(player)
+with open('joueur.json', 'w', encoding='utf-8') as f:
+    json.dump(player, f, ensure_ascii=False, indent=4)
 
 
 os.system('cls')
@@ -77,8 +84,8 @@ poid=0
 
 poid1=int(input(f"Que voulez vous faire {name}?\n"))
 if poid1 == 1:
-        sac["Pc"] = "ok"
-        sac["recharge"] = "ok"
+        player["Pc"] = "ok"
+        player["recharge"] = "ok"
         print(f"vous avez pris le pc ainsi que le systeme de recharge et votre charge est à {poid} sur 10 point.\n\n")
 else:
         print("Vous n'avez pas pris le pc ainsi que le systeme de recharge, une noix de coco tombe dessus et detruit le tout...\n\n")
@@ -94,14 +101,17 @@ printTexts(decouvcarte)
 
 repcarte= int(input(f"Que voulez vous faire {name}?\n"))
 if repcarte == 1:
-    joueur["mappy"] = "ok"
+    player["mappy"] = "ok"
     print(f"vous avez pris la carte .\n\n")
 else:
     print("Vous n'avez pas pris la carte...\n\n")
+
 os.system('cls')
 
+    
 while True:
     carte()
+    print(player)
     dis1 = int(input("Vous décidez de prendre la route et le chemin sera long.\n"
             "Alors , vous décidez que la plage serait le sud et les montage.. le nord.\n"
             "L'ouest sera à votre gauche et l'Est sera à votre droite."
@@ -109,51 +119,51 @@ while True:
             "             8 : aller vers le nord.\n"
             "4 : aller vers l'Ouest. 6 : aller vers l'Est.\n"
             "             2 : aller vers le sud.\n" ))
-    if joueur["fatigue"] == 0:
+    if player["fatigue"] == 0:
         dis2 = int(input("vous êtes fatigué, il serait temps de vous reposer... \n"
                     "1h de repos vous rend 25 point d'endurance et vous en avez 0.\n"
                     "1 : repos 1h. 2 : repos 2h.\n"
                     "3 : repos 3h. 4 : repos 4h.\n" ))
         if dis2 == 1:
-            joueur["fatigue"] +=25
+            player["fatigue"] +=25
         if dis2 == 2:
-            joueur["fatigue"] +=50
+            player["fatigue"] +=50
         if dis2 == 3:
-            joueur["fatigue"] +=75
+            player["fatigue"] +=75
         if dis2 == 4:
-            joueur["fatigue"] +=100
-    if joueur["soif"] <=20:
+            player["fatigue"] +=100
+    if player["soif"] <=20:
         dis3 = int(input(f"vous avez soif, il serait temps de boire... \n"
                     "boire 1 fois vous rend 15 point d'hydratation et vous en avez {soif}.\n"
                     "1 : boire 1 fois. 2 : boire 2 fois.\n"
                     "3 : boire 3 fois. 4 : boire 4 fois.\n" ))
         if dis3 == 1:
-            joueur["soif"] +=15
+            player["soif"] +=15
         if dis3 == 2:
-            joueur["soif"] +=30
+            player["soif"] +=30
         if dis3 == 3:
-            joueur["soif"] +=45
+            player["soif"] +=45
         if dis3 == 4:
-            joueur["soif"] +=60
+            player["soif"] +=60
 
     if dis1 == 4:
-        joueur["x"] -=1
-        joueur["fatigue"] -=10
+        player["x"] -=1
+        player["fatigue"] -=10
         print(f"vous avez fait 100m vers l'Ouest. \n\n")
         colquette()
     if dis1 == 6:
-        joueur["x"] +=1
-        joueur["fatigue"] -=10
+        player["x"] +=1
+        player["fatigue"] -=10
         print(f"vous avez fait 100m vers l'Est. \n\n")
         colquette()
     if dis1 == 8:
-        joueur["y"] -= 1
-        joueur["fatigue"] -=10
+        player["y"] -= 1
+        player["fatigue"] -=10
         print("vous avez fait 100m vers le nord.\n\n")
         colquette()
     if dis1 == 2:
-        joueur["y"] +=1
-        joueur["fatigue"] -=10
+        player["y"] +=1
+        player["fatigue"] -=10
         print(f"vous avez fait 100m vers le sud. \n\n")
         colquette()
     

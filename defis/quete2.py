@@ -1,8 +1,9 @@
 from random import*
-from joueur import*
+
 from time import *
 import os
-
+import json
+from options.joueur import player
 
 def quete2():
     disquete2 = (
@@ -83,12 +84,12 @@ def quete2():
 
     for lettre in messagedeux:
         message_chiffrédeux += dechiffrage_lettre(lettre, alpha_c, bclef)
-        if message_chiffrédeux != joueur["names"]:
+        if message_chiffrédeux != player["names"]:
             break
         else:
             print(f"bien joué {message_chiffrédeux}")
 
-    disquete2_1= (f"Bien joué{message_chiffrédeux} tu as réussi l'epreuve,\n",
+    disquete2_1= (f"Bien joué, tu as réussi l'epreuve,\n",
                  "tu entend un lourd mecanisme grincer et la grille se soulève sous tes yeux.\n" ,
                  "tu recois la cléf d'argent.\n\n",
                  "Courage encore quelques effort et tu retrouveras tes amis.")
@@ -99,7 +100,9 @@ def quete2():
     
     
 
-    joueur["cléf argent"] = "ok"
+    player["cléf argent"] = "ok"
+    with open('joueur.json', 'w', encoding='utf-8') as f:
+        json.dump(player, f, ensure_ascii=False, indent=4)
         
 
 if __name__ == "__main__":

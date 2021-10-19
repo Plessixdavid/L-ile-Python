@@ -1,6 +1,8 @@
 from random import *
-from joueur import * 
 from time import *
+import json 
+from options.joueur import player
+
 
 def quete3():
     map_mattrix = [
@@ -36,7 +38,7 @@ def quete3():
         row = ""
         for x in range(len(map_mattrix[y])):
             element = map_mattrix[y][x]
-            if x == joueur["x"] and y == joueur['y']:
+            if x == player["x"] and y == player['y']:
                 row+= "⬛"
             elif element == 7:
                 row+="⬛"
@@ -100,18 +102,18 @@ def quete3():
         "singe8" : randint(50,70),
         "singe9" : randint(50,70),
         "chef" : randint(70,90),
-        f"{joueur['names']}" : randint(70,100)
+        f"{player['names']}" : randint(70,100)
     }
     playerwin = (f"un grand silence envahi la jungle, même les oiseaux stop leurs chants.",
-                f"{joueur['names']} regarde autour de lui, inquiet. Le chef monte sur l arbre,",
+                f"{player['names']} regarde autour de lui, inquiet. Le chef monte sur l arbre,",
                 "la défaite lui pèse sur les épaules. Arrivé à la moitié du chemin, le chef ",
                 "se retourne et dit:",
-                f"Que ferais tu si je ne te donnais pas la clef {joueur['names']}?\n",
-                f"Prenant sont courage à deux mains {joueur['names']} lui répondi:",
+                f"Que ferais tu si je ne te donnais pas la clef {player['names']}?\n",
+                f"Prenant sont courage à deux mains {player['names']} lui répondi:",
                 "Nous pourrions rejouer et je gagnerais encore!\n",
                 "Le singe baissa les épaules et décrocha la clef tout en souflant:",
                 "Prend et ne reviens jamais.\n",
-                f"{joueur['names']} ramassa la cléf et s éloigna soulagé d avoir gagné la clef d'or"
+                f"{player['names']} ramassa la cléf et s éloigna soulagé d avoir gagné la clef d'or"
                 )
     playerisfalse= False
     print(joueurs)
@@ -121,13 +123,15 @@ def quete3():
             if len(joueurs) == 1:
                 for e in playerwin:
                     print('{:^100}'.format(e))
-                    joueur["cléf or"] = "ok"
+                    player["cléf or"] = "ok"
                     sleep(0.5)
+                    with open('joueur.json', 'w', encoding='utf-8') as f:
+                        json.dump(player, f, ensure_ascii=False, indent=4)
                 
                 fizzbuzz = 64646
                 break
-            if k == joueur['names']:
-                print(f'{joueur["names"]} prend son temps et lance.')
+            if k == player['names']:
+                print(f'{player["names"]} prend son temps et lance.')
             else:
                 print(f"le {k} lance fièrement:")
             fizzbuzz+=1
@@ -145,10 +149,10 @@ def quete3():
                     continue
                 print(fizzbuzz)
             else:
-                if joueur['names'] in joueurs and len(joueurs) <= 1:
-                    print(joueur['names'] + " a gagné !")
+                if player['names'] in joueurs and len(joueurs) <= 1:
+                    print(player['names'] + " a gagné !")
                     break
-                if k== joueur['names']:
+                if k== player['names']:
                     playerisfalse = True
                     print("il rate et sort du jeu")
                     break

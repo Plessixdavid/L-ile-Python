@@ -1,4 +1,4 @@
-from joueur import *
+
 from time import sleep
 import os
 
@@ -35,9 +35,7 @@ def mappy1():
         row = ""
         for x in range(len(map_mattrix[y])):
             element = map_mattrix[y][x]
-            if x == joueur["x"] and y == joueur['y']:
-                row+= "⬛"
-            elif element == 7:
+            if element == 7:
                 row+="📜"
             elif element == 5:
                 row+="🟥"  

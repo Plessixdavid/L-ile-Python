@@ -1,4 +1,3 @@
-from joueur import*
 from time import sleep
 
 def printTexts(listeText):

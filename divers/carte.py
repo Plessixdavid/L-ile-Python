@@ -1,4 +1,7 @@
-from joueur import *
+
+from options.joueur import player
+
+
 
 map_mattrix = [
     [1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
@@ -23,11 +26,12 @@ map_mattrix = [
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], 
 ]
 def carte():
+    print(player)
     for y in range(len(map_mattrix)):
         row = ""
         for x in range(len(map_mattrix[y])):
             element = map_mattrix[y][x]
-            if x == joueur["x"] and y == joueur['y']:
+            if x == player["x"] and y == player['y']:
                 row+= "😁"
             elif element == 8:
                 row+="⚫"

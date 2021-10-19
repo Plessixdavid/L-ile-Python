@@ -1,8 +1,9 @@
-from joueur import *
 import random
 random.randint(0, 21)
 from time import *
 import os
+import json
+from options.joueur import player
 
 def quete1():
     map_mattrix = [
@@ -38,9 +39,7 @@ def quete1():
         row = ""
         for x in range(len(map_mattrix[y])):
             element = map_mattrix[y][x]
-            if x == joueur["x"] and y == joueur['y']:
-                row+= "⬛"
-            elif element == 7:
+            if element == 7:
                 row+="⬛"
             elif element == 5:
                 row+="🟥"  
@@ -114,14 +113,17 @@ def quete1():
                             "1 : oui. 2 : non.\n")
     print(disquete1_3)
     if disquete1_3 == 1:
-        joueur["cléf bronze"] = "ok"
+        player["cléf bronze"] = "ok"
         print(f"vous avez pris la cléf de bronze .\n\n")
     else:
-        joueur["cléf bronze"] = "ok"
+        player["cléf bronze"] = "ok"
         print("Vous êtes con ou quoi...Vous prenez la cléf quand même.\n\n")
     print()
     print()
      
+
+with open('joueur.json', 'w') as f:
+	json.dump(player, f)
 
 if __name__ == "__main__":
     quete1()

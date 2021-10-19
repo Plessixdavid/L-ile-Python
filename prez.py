@@ -1,6 +1,7 @@
 from time import sleep
-from joueur import *
+from options.joueur import *
 import os
+import json
 
 os.system('cls')
 sleep(1) 
@@ -32,9 +33,7 @@ for y in range(len(map_mattrix)):
     row = ""
     for x in range(len(map_mattrix[y])):
         element = map_mattrix[y][x]
-        if x == joueur["x"] and y == joueur['y']:
-            row+= "🟫"
-        elif element == 7:
+        if element == 7:
             row+="📜"
         elif element == 5:
             row+="🟥"  
@@ -86,11 +85,11 @@ if __name__=='__main__':
             print('entrez un nombre de 1 à 4')
         #Check what choice was entered and act accordingly
         if option == 1:
-          exec(open("projet1.py",encoding="utf-8").read())
+          exec(open("defis/main.py",encoding="utf-8").read())
         elif option == 2:
             option2()
         elif option == 3:
-            exec(open("regle.py",encoding="utf-8").read())
+            exec(open("divers/regle.py",encoding="utf-8").read())
         elif option == 4:
             print('Thanks message before exiting')
             exit()
