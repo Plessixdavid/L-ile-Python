@@ -29,7 +29,6 @@ def mappy1():
     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], 
 ]
 
-    os.system('cls')
 
     for y in range(len(map_mattrix)):
         row = ""
@@ -54,6 +53,7 @@ def mappy1():
                 row+="0"
         print(row)
 
+    os.system('cls')
     sleep(3)
 
 

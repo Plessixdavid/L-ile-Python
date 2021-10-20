@@ -47,7 +47,6 @@ if player['names'] == "":
             "comment te nomme tu?\n")
 
     player.update({"names": name})
-    print(player)
     with open('joueur.json', 'w', encoding='utf-8') as f:
         json.dump(player, f, ensure_ascii=False, indent=4)
 
@@ -67,6 +66,7 @@ if player['names'] == "":
         print(f"vous avez pris le sac.\n\n")
         print(f" dans le sac, il y a {sac}")
         print()
+    
     else:
         print("Vous n'avez pas pris le sac et un coup de vent l'emporte loin vers le large...\n\n")
 
@@ -109,7 +109,6 @@ if player['names'] == "":
     
 while True:
     carte()
-    print(player)
     dis1 = int(input("Vous décidez de prendre la route et le chemin sera long.\n"
             "Alors , vous décidez que la plage serait le sud et les montage.. le nord.\n"
             "L'ouest sera à votre gauche et l'Est sera à votre droite."

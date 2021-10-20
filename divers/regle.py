@@ -1,4 +1,4 @@
-from prez import *
+from ouverture_game import *
 from time import sleep
 
 cls = lambda: print('\n'*100)

@@ -1,5 +1,6 @@
-
+import os
 from options.joueur import player
+from time import sleep
 
 
 
@@ -26,7 +27,6 @@ map_mattrix = [
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], 
 ]
 def carte():
-    print(player)
     for y in range(len(map_mattrix)):
         row = ""
         for x in range(len(map_mattrix[y])):
