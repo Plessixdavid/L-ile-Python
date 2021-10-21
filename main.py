@@ -4,7 +4,7 @@ from defis.quete2 import quete2
 from defis.quete3 import quete3
 from defis.porte import door
 from divers.carte import carte
-from divers.map1 import mappy1
+from divers.anima_porte  import mappy1
 from options.joueur import player
 
 from inv import *
@@ -153,7 +153,7 @@ while True:
         print(f"vous avez fait 100m vers l'Ouest. \n\n")
         colquette()
     if dis1 == 6:
-        player["x"] +=1
+        player["x"] +=1 
         player["fatigue"] -=10
         print(f"vous avez fait 100m vers l'Est. \n\n")
         colquette()

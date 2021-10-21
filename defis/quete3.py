@@ -2,6 +2,7 @@ from random import *
 from time import *
 import json 
 from options.joueur import player
+from options.liste_def import printTexts
 
 
 def quete3():
@@ -87,9 +88,7 @@ def quete3():
     "Au bout de quelques tours tu comprends le principe du jeu et tu tentes ta chance\n",
     "pour obtenir la clé.")
 
-    for e in disquete3: 
-        print('{:^100}'.format(e))
-        sleep(0.5)
+    printTexts(disquete3)
 
     joueurs = {
         "singe1" : randint(50,70),
@@ -103,7 +102,8 @@ def quete3():
         "singe9" : randint(50,70),
         "chef" : randint(70,90),
         f"{player['names']}" : randint(70,100)
-    }
+    }   #dictionnaire des participants
+
     playerwin = (f"un grand silence envahi la jungle, même les oiseaux stop leurs chants.",
                 f"{player['names']} regarde autour de lui, inquiet. Le chef monte sur l arbre,",
                 "la défaite lui pèse sur les épaules. Arrivé à la moitié du chemin, le chef ",
@@ -117,9 +117,9 @@ def quete3():
                 )
     playerisfalse= False
     print(joueurs)
-    fizzbuzz = 0
+    fizzbuzz = 0 #compteur de la boucle fizzbuzz
     while fizzbuzz <=3000 and len(joueurs)>= 1 and not playerisfalse:
-        for k,v in joueurs.items():
+        for keys,values in joueurs.items():
             if len(joueurs) == 1:
                 for e in playerwin:
                     print('{:^100}'.format(e))
@@ -130,14 +130,14 @@ def quete3():
                 
                 fizzbuzz = 64646
                 break
-            if k == player['names']:
+            if keys == player['names']:
                 print(f'{player["names"]} prend son temps et lance.')
             else:
-                print(f"le {k} lance fièrement:")
+                print(f"le {keys} lance fièrement:")
             fizzbuzz+=1
             rnd_nb = randint(0,100)
 
-            if rnd_nb <= v:
+            if rnd_nb <= values:
                 if fizzbuzz % 3 == 0 and fizzbuzz % 5 == 0:
                     print("il fait fizzbuzz")
                     continue

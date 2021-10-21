@@ -4,8 +4,9 @@ from time import *
 import os
 import json
 from options.joueur import player
+from options.liste_def import printTexts
 
-def quete1():
+def quete1(): # Création image du défis 1
     map_mattrix = [
         [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
         [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2], 
@@ -71,15 +72,15 @@ def quete1():
                 "La voix poursuit :",
                 "« 3 fois de suite, tu devras deviner le nombre que j’ai en tête.",
                 "Tu as 20 essais maximum pour les trouver tous, es-tu prêt ? »")
-
-
-    for e in disquete1: 
-        print('{:^100}'.format(e))
-        sleep(0.5)
-
+    # print via la fonction printTexts
+    printTexts(disquete1)
+    
+    # permets un clear
     os.system('cls')
     reset = False
 
+    # permets une boucle x 3 commencant à l'essai 1.
+    # nbralea est un nombre aleatoire entre 0 et 100
     for loop in range(1,4):
         nbralea = random.randint(0,100)
         repquete= -1
@@ -89,7 +90,7 @@ def quete1():
         while repquete != nbralea:
             repquete = int(input("entre un nombre.\n"))
             essais += 1
-            if essais >= 20:
+            if essais >= 20: # si nombre d'essai > ou = à 20 on recommence
                 reset = True
                 print(f"fin de parti, recommence.")
                 break
@@ -108,12 +109,12 @@ def quete1():
                     "Maintenant, dirige toi vers le prochain défis mais gare à toi car l'île regeorge de danger.\n\n"
                     "Le sphinx disparu dans un epaix nuage aux senteurs inabituel de ... d'herbes de provence.  ")
     
-    for e in disquete1_2: 
-        print('{:^100}'.format(e))
-        sleep(0.5)
+    printTexts(disquete1_2)
+
     disquete1_3 = input("La cléf tombe sur le sol, voulez-vous la ramasser?\n\n"
                             "1 : oui. 2 : non.\n")
     print(disquete1_3)
+    
     if disquete1_3 == 1:
         player["cléf bronze"] = "ok"
         print(f"vous avez pris la cléf de bronze .\n\n")

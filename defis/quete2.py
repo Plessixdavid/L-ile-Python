@@ -3,6 +3,7 @@ from random import*
 from time import *
 import os
 import json
+from options.liste_def import printTexts
 from options.joueur import player
 
 def quete2():
@@ -30,39 +31,38 @@ def quete2():
                 "« Récite le crédo du Python, puis trace ton nom secret ».")
 
     os.system('cls') 
-    for e in disquete2:
-        print('{:^100}'.format(e))
-        sleep(0.5)
+    printTexts(disquete2)
 
 
-
+    # création d'une liste de a à b.
     alpha_b = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
 
     for x in range(len(alpha_b)):
         alpha_b.append(alpha_b[x])
 
     message= input("entrez votre message:\n")
-    clef= randint(0,26)
+    clef= randint(0,26) # permet de choisi aléatoirement une clef de 0 à 26
     os.system('cls')
+
     def chiffrage_lettre(lettre, alpha_b, clef):
-        for i in range(len(alpha_b)):
+        for i in range(len(alpha_b)): #boucle sur l'index de alpha_b
             if lettre == " ":
-                return " "
-            elif alpha_b[i] == lettre:
-                return str(alpha_b[i+clef])
+                return " " # si la lettre = espace alors retourné un espace
+            elif alpha_b[i] == lettre: 
+                return str(alpha_b[i+clef]) # si la lettre est un lettre en prenant l'index + clef
         return "?"
 
 
-    message_chiffré = str()
+    message_chiffré = str() # message devient crypté
 
     for lettre in message:
         message_chiffré += chiffrage_lettre(lettre, alpha_b, clef)
         
 
-    print(message_chiffré)
+    print(message_chiffré) # print du message crypté
 
-    messagedeux= input("entrez votre message:\n")
-    bclef= int(input("entrez une clef de décalage svp:\n"))
+    messagedeux= input("entrez votre message:\n") # doit entré son nom en tenant compte du decalage de clef
+    bclef= int(input("entrez une clef de décalage svp:\n")) # doit entré la clef décaler
 
     alpha_c = ["z","y","x","w","v","u","t","s","r","q","p","o","n","m","l","k","j","i","h","g","f","e","d","c","b","a"]
 
@@ -80,27 +80,24 @@ def quete2():
         return "?"
 
 
-    message_chiffrédeux = str()
+    message_chiffrédeux = str() #print le message crypté ... decrypté
 
     for lettre in messagedeux:
         message_chiffrédeux += dechiffrage_lettre(lettre, alpha_c, bclef)
-        if message_chiffrédeux != player["names"]:
+        if message_chiffrédeux != player["names"]: #si message décrypté !=  au nom du entré en main, stop
             break
         else:
-            print(f"bien joué {message_chiffrédeux}")
+            print(f"bien joué {message_chiffrédeux}") #si message décrypté ==  au nom du entré en main, gagné
 
     disquete2_1= (f"Bien joué, tu as réussi l'epreuve,\n",
                  "tu entend un lourd mecanisme grincer et la grille se soulève sous tes yeux.\n" ,
                  "tu recois la cléf d'argent.\n\n",
                  "Courage encore quelques effort et tu retrouveras tes amis.")
     
-    for e in disquete2_1:
-        print('{:^100}'.format(e))
-        sleep(0.5)
-    
-    
+    printTexts(disquete2_1)
 
     player["cléf argent"] = "ok"
+    
     with open('joueur.json', 'w', encoding='utf-8') as f:
         json.dump(player, f, ensure_ascii=False, indent=4)
         
